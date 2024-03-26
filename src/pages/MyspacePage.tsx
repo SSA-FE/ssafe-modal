@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '@components/Header';
 import Modal from '@components/Modal';
@@ -7,18 +7,23 @@ import SearchSVG from '@assets/search.svg?react';
 import ArrowSVG from '@assets/arrow.svg?react';
 
 type form = { title: string; content: string; tagList: string[] };
-const formDataList: form[] = [];
 
 const MyspacePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('survey');
+  const [surveyDataList, setSurveyDataList] = useState<form[]>();
+  const [surveyData, setSurveyData] = useState<form>({title:'', content: '', tagList: [] });
+
+
 
   const location = useLocation();
   const nickName = location.state ? location.state.nickName : '';
 
   const receiveFormData = (data: form) => {
-    formDataList.push(data);
-    console.log('Received form data:', formDataList);
+    const list = surveyDataList;
+    list?.push(data);
+    setSurveyDataList(list);
+    console.log('Received form data:');
   };
 
   const showModal = (type: string) => {
@@ -54,7 +59,7 @@ const MyspacePage = () => {
       </div>
       <div className="px-[3.2rem]">
         <div className="relative top-[9rem] flex ">
-          {formDataList.map((data) => (
+          {surveyDataList?.map((data) => (
             <Card title={data.title} content={data.content} tagList={data.tagList} />
           ))}
         </div>
@@ -63,7 +68,7 @@ const MyspacePage = () => {
         <Modal
           modalType={modalType}
           setModalOpen={setModalOpen}
-          formData={{ title: '', content: '', tagList: [] }}
+          formData={surveyData}
           receiveFormData={receiveFormData}
         />
       )}

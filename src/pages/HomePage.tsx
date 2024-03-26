@@ -5,8 +5,6 @@ import Header from '@components/Header';
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('login');
-
-  // 추가한 부분 아래 모달부분도 변경되어있음
   type form = { title: string; content: string; tagList: string[] };
   const [formData, setFormData] = useState<form>({ title: '', content: '', tagList: [] });
   const receiveFormData = (data: form) => {

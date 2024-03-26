@@ -80,9 +80,7 @@ const SurveyModal = ({
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   formData: form;
   receiveFormData: (data: form) => void;
-  }) => {
-  
-  const [id, setId] = useState('');
+}) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tag, setTag] = useState('');
@@ -102,8 +100,9 @@ const SurveyModal = ({
   };
 
   const handleOkBtn = () => {
-    setId(uuidv4());
-    const formData = {id,title, content, tagList };
+    const key = uuidv4();
+    console.log('key' + key);
+    const formData = { id: key, title, content, tagList };
     receiveFormData(formData);
     setModalOpen(false);
   };

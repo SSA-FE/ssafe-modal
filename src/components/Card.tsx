@@ -2,7 +2,7 @@ import React from 'react';
 
 const colorList = ['bg-[#F04D1D]', 'bg-[#FF7364]', 'bg-[#A75EFF]', 'bg-[#1EBDFE]', 'bg-[#0DCF85]'];
 
-const Card = ({ title, content, tagList }: { title: string; content: string; tagList: string[] }) => {
+const Card = ({ id, title, content, tagList }: { id: string; title: string; content: string; tagList: string[] }) => {
   const today = new Date();
   const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
 

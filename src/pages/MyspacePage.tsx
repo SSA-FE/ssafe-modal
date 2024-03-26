@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '@components/Header';
 import Modal from '@components/Modal';
@@ -11,10 +11,8 @@ type form = { id: string; title: string; content: string; tagList: string[] };
 const MyspacePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('survey');
-  const [surveyDataList, setSurveyDataList] = useState<form[]>();
-  const [surveyData, setSurveyData] = useState<form>({id:'',title:'', content: '', tagList: [] });
-
-
+  const [surveyDataList, setSurveyDataList] = useState<form[]>([]);
+  const [surveyData, setSurveyData] = useState<form>({ id: '', title: '', content: '', tagList: [] });
 
   const location = useLocation();
   const nickName = location.state ? location.state.nickName : '';
@@ -22,8 +20,11 @@ const MyspacePage = () => {
   const receiveFormData = (data: form) => {
     const list = surveyDataList;
     list?.push(data);
+    console.log(list);
+
     setSurveyDataList(list);
-    console.log('Received form data:');
+    console.log(surveyDataList);
+    console.log('Received form data:' + data.id + ' ' + data.title);
   };
 
   const showModal = (type: string) => {
@@ -60,7 +61,7 @@ const MyspacePage = () => {
       <div className="px-[3.2rem]">
         <div className="relative top-[9rem] flex ">
           {surveyDataList?.map((data) => (
-            <Card title={data.title} content={data.content} tagList={data.tagList} />
+            <Card key={data.id} id={data.id} title={data.title} content={data.content} tagList={data.tagList} />
           ))}
         </div>
       </div>

@@ -125,6 +125,7 @@ const SurveyModal = ({
           className="border-black-500 mx-auto mt-[0.8rem] h-[3.2rem] w-[57.6rem] rounded-md border-2 border-solid bg-[#F5F5F5]"
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력하세요"
+          maxLength={22}
           value={title}
         ></input>
         <label htmlFor="surveyContent" className="ms-[1.6rem] mt-[3.2rem] text-[1.4rem]">

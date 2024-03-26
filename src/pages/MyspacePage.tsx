@@ -59,7 +59,7 @@ const MyspacePage = () => {
         </div>
       </div>
       <div className="px-[3.2rem]">
-        <div className="relative top-[9rem] flex ">
+        <div className="relative top-[9rem] grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 ">
           {surveyDataList?.map((data) => (
             <Card key={data.id} id={data.id} title={data.title} content={data.content} tagList={data.tagList} />
           ))}

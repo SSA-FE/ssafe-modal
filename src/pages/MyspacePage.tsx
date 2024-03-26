@@ -6,13 +6,13 @@ import Card from '@components/Card';
 import SearchSVG from '@assets/search.svg?react';
 import ArrowSVG from '@assets/arrow.svg?react';
 
-type form = { title: string; content: string; tagList: string[] };
+type form = { id: string; title: string; content: string; tagList: string[] };
 
 const MyspacePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('survey');
   const [surveyDataList, setSurveyDataList] = useState<form[]>();
-  const [surveyData, setSurveyData] = useState<form>({title:'', content: '', tagList: [] });
+  const [surveyData, setSurveyData] = useState<form>({id:'',title:'', content: '', tagList: [] });
 
 
 

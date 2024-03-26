@@ -5,8 +5,8 @@ import Header from '@components/Header';
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('login');
-  type form = { title: string; content: string; tagList: string[] };
-  const [formData, setFormData] = useState<form>({ title: '', content: '', tagList: [] });
+  type form = { id: string; title: string; content: string; tagList: string[] };
+  const [formData, setFormData] = useState<form>({id:'', title: '', content: '', tagList: [] });
   const receiveFormData = (data: form) => {
     setFormData(data);
     console.log('Received form data:', data);

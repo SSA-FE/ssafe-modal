@@ -1,8 +1,9 @@
 import React, { SetStateAction, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SurveyTag from '@components/SurveyTag';
+import { v4 as uuidv4 } from 'uuid';
 
-type form = { title: string; content: string; tagList: string[] };
+type form = { id: string; title: string; content: string; tagList: string[] };
 const Modal = ({
   modalType,
   setModalOpen,
@@ -79,7 +80,9 @@ const SurveyModal = ({
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   formData: form;
   receiveFormData: (data: form) => void;
-}) => {
+  }) => {
+  
+  const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tag, setTag] = useState('');
@@ -99,7 +102,8 @@ const SurveyModal = ({
   };
 
   const handleOkBtn = () => {
-    const formData = { title, content, tagList };
+    setId(uuidv4());
+    const formData = {id,title, content, tagList };
     receiveFormData(formData);
     setModalOpen(false);
   };

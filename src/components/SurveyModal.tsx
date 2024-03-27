@@ -33,7 +33,13 @@ const SurveyModal = ({
   };
 
   const handleOkBtn = () => {
-    const key = uuidv4();
+    let key = '';
+    if (formData.id === '') {
+      key = uuidv4();
+    } else {
+      key = formData.id;
+    }
+
     const form = { id: key, title, content, tagList };
     handleFormData(form);
     setModalOpen(false);

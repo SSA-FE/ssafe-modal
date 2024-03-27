@@ -17,9 +17,26 @@ const MyspacePage = () => {
   const { modalType, modalOpen, openModal, closeModal, formData, handleFormData } = useModal();
   useEffect(() => {
     if (formData.id !== '') {
-      setSurveyDataList((prevList) => [...prevList, formData]); // 이전 목록에 새로운 데이터 추가
+      let updatedList = [...surveyDataList]; // 현재 목록을 복사하여 수정할 예정
+
+      let found = false; // 해당 ID를 가진 데이터가 있는지 여부를 나타내는 플래그
+      updatedList.forEach((element, index) => {
+        if (element.id === formData.id) {
+          // 동일한 ID를 가진 데이터를 찾으면 수정
+          updatedList[index] = formData;
+          found = true;
+        }
+      });
+
+      if (!found) {
+        // 동일한 ID를 가진 데이터가 없는 경우 새로운 데이터 추가
+        updatedList.push(formData);
+      }
+
+      // 수정된 목록을 적용
+      setSurveyDataList(updatedList);
     }
-  }, [formData]);
+  }, [formData, surveyDataList]);
 
   return (
     <div className="h-screen w-full bg-[#FAFAFA]">
@@ -58,7 +75,18 @@ const MyspacePage = () => {
       <div className="px-[3.2rem]">
         <div className="relative top-[9rem] grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 ">
           {surveyDataList.map((data) => (
-            <Card key={data.id} id={data.id} title={data.title} content={data.content} tagList={data.tagList} />
+            <Card
+              key={data.id}
+              formData={data}
+              onClick={() =>
+                openModal('survey', {
+                  id: data.id,
+                  title: data.title,
+                  content: data.content,
+                  tagList: data.tagList,
+                })
+              }
+            />
           ))}
         </div>
       </div>

@@ -1,23 +1,9 @@
 import { useState } from 'react';
-import Modal from '@components/Modal';
 import Header from '@components/Header';
-
+import LoginModal from '@/components/LoginModal';
+import useModal from '@/hooks/useModal';
 const HomePage = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('login');
-  type form = { id: string; title: string; content: string; tagList: string[] };
-  const [formData, setFormData] = useState<form>({id:'', title: '', content: '', tagList: [] });
-  const receiveFormData = (data: form) => {
-    setFormData(data);
-    console.log('Received form data:', data);
-  };
-  //
-
-  const showModal = (type: string) => {
-    setModalType(type);
-    setModalOpen(true);
-  };
-
+  const { modalType, modalOpen, openModal, closeModal, formData, handleFormData } = useModal();
   return (
     <div>
       <Header headText={'폼나는 싸패'} nickName={''} />
@@ -35,19 +21,14 @@ const HomePage = () => {
             모든 핵심 과정을 왈라에서 한번에 해결하실 수 있습니다.
           </p>
           <button
-            onClick={() => showModal(modalType)}
+            onClick={() => openModal('login')}
             className="mt-[9.7rem] h-[6.4rem] w-[32rem] rounded-[3.2rem] bg-[#6ED1F9] text-[2.4rem] font-bold text-white"
           >
             로그인
           </button>
         </div>
         {modalOpen && (
-          <Modal
-            modalType={modalType}
-            setModalOpen={setModalOpen}
-            formData={formData}
-            receiveFormData={receiveFormData}
-          />
+          <div className="modal-overlay">{modalType === 'login' && <LoginModal setModalOpen={closeModal} />}</div>
         )}
       </div>
     </div>

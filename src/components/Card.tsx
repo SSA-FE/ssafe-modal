@@ -14,7 +14,7 @@ const Card = ({ id, title, content, tagList }: { id: string; title: string; cont
           <span className="text-[1.2rem] font-normal text-[#A3A3A3]">작성일: {formattedDate}</span>
         </div>
         <div className="flex h-[16.4rem] w-[35.6rem] flex-col">
-          <p className="scrollbar-hide h-[6.2rem] overflow-x-auto break-words px-[2.4rem] pt-[1rem] text-[1.4rem] text-[#737373]">
+          <p className="h-[6.2rem] overflow-x-auto break-words px-[2.4rem] pt-[1rem] text-[1.4rem] text-[#737373] scrollbar-hide">
             {content}
           </p>
           <div className="flex flex-col items-center">

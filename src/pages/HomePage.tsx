@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import Header from '@components/Header';
 import LoginModal from '@/components/LoginModal';
 import useModal from '@/hooks/useModal';
 const HomePage = () => {
-  const { modalType, modalOpen, openModal, closeModal, formData, handleFormData } = useModal();
+  const { modalType, modalOpen, openModal, closeModal } = useModal();
   return (
     <div>
       <Header headText={'폼나는 싸패'} nickName={''} />

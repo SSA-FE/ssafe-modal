@@ -3,7 +3,7 @@ import { useState } from 'react';
 type Form = { id: string; title: string; content: string; tagList: string[] };
 
 const useModal = () => {
-  const [modalType, setModalType] = useState<string>('login');
+  const [modalType, setModalType] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [formData, setFormData] = useState<Form>({ id: '', title: '', content: '', tagList: [] });
 

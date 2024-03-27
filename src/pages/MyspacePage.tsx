@@ -5,35 +5,27 @@ import Card from '@components/Card';
 import SearchSVG from '@assets/search.svg?react';
 import ArrowSVG from '@assets/arrow.svg?react';
 import useModal from '@/hooks/useModal';
-import LoginModal from '@/components/LoginModal';
 import SurveyModal from '@/components/SurveyModal';
 type form = { id: string; title: string; content: string; tagList: string[] };
 
 const MyspacePage = () => {
   const [surveyDataList, setSurveyDataList] = useState<form[]>([]);
-  const [surveyData, setSurveyData] = useState<form>({ id: '', title: '', content: '', tagList: [] });
   const location = useLocation();
   const nickName = location.state ? location.state.nickName : '';
   const { modalType, modalOpen, openModal, closeModal, formData, handleFormData } = useModal();
   useEffect(() => {
     if (formData.id !== '') {
-      let updatedList = [...surveyDataList]; // 현재 목록을 복사하여 수정할 예정
-
-      let found = false; // 해당 ID를 가진 데이터가 있는지 여부를 나타내는 플래그
+      let updatedList = [...surveyDataList];
+      let found = false;
       updatedList.forEach((element, index) => {
         if (element.id === formData.id) {
-          // 동일한 ID를 가진 데이터를 찾으면 수정
           updatedList[index] = formData;
           found = true;
         }
       });
-
       if (!found) {
-        // 동일한 ID를 가진 데이터가 없는 경우 새로운 데이터 추가
         updatedList.push(formData);
       }
-
-      // 수정된 목록을 적용
       setSurveyDataList(updatedList);
     }
   }, [formData, surveyDataList]);

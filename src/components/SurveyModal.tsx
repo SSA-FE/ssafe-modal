@@ -1,5 +1,4 @@
-import React, { SetStateAction, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import SurveyTag from '@components/SurveyTag';
 import { v4 as uuidv4 } from 'uuid';
 
